@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  /* Override MathLive Virtual Keyboard Theme */
+  --keyboard-zindex: 9999;
+  --keyboard-background: #f8fafc; /* slate-50 */
+  --keyboard-toolbar-text: #64748b; /* slate-500 */
+  --keyboard-toolbar-text-active: #0f766e; /* teal-600 */
+
+  --keycap-background: #ffffff;
+  --keycap-background-hover: #f1f5f9;
+  --keycap-background-active: #e2e8f0;
+
+  --keycap-text: #1e293b; /* slate-800 */
+  --keycap-text-hover: #0f172a;
+  --keycap-text-active: #0f172a;
+  --keycap-secondary-text: #94a3b8; /* slate-400 */
+
+  --keycap-border: 1px solid #e2e8f0;
+  --keycap-border-bottom: 2px solid #cbd5e1;
+  --keycap-border-radius: 10px;
+
+  /* Variant keys (like shift, symbols) */
+  --variant-keycap-background: #f1f5f9;
+  --variant-keycap-text: #334155;
+
+  /* Action keys (like arrows, backspace) */
+  --action-keycap-background: #fff1f2; /* rose-50 */
+  --action-keycap-background-hover: #ffe4e6;
+  --action-keycap-text: #e11d48; /* rose-600 */
+  --action-keycap-border: 1px solid #fecdd3;
+  --action-keycap-border-bottom: 2px solid #fecdd3;
+
+  /* Primary keys (like Return/Enter, = ) */
+  --primary-keycap-background: #0f766e; /* teal-600 */
+  --primary-keycap-background-hover: #115e59;
+  --primary-keycap-text: #ffffff;
+  --primary-keycap-border: 1px solid #0d9488;
+  --primary-keycap-border-bottom: 2px solid #0f766e;
+}
+
+/* Ensure MathLive keyboard forces light mode colors regardless of OS dark mode */
+body {
+  --keyboard-background: #f8fafc !important;
+}
+
+/* Hide the default MathLive hamburger menu as it's not needed for this app */
+math-field::part(menu-toggle) {
+  display: none !important;
+}
+
+/* Force light theme on keyboard elements */
+.ML__keyboard {
+  box-shadow: 0 -10px 40px -15px rgba(0, 0, 0, 0.15) !important;
+  border-top: 1px solid rgba(226, 232, 240, 0.8) !important;
+}
+
+/* Override dark mode text if OS is in dark mode */
+@media (prefers-color-scheme: dark) {
+  .ML__keyboard {
+    color: #1e293b !important;
+  }
+  .ML__keyboard .ML__keycap {
+    color: #1e293b !important;
+    background: #ffffff !important;
+    border-color: #e2e8f0 !important;
+    border-bottom-color: #cbd5e1 !important;
+  }
+  .ML__keyboard .ML__keycap.action {
+    background: #fff1f2 !important;
+    color: #e11d48 !important;
+  }
+  .ML__keyboard .ML__keycap.primary {
+    background: #0f766e !important;
+    color: #ffffff !important;
+  }
+  .ML__keyboard .ML__keyboard-toolbar {
+    color: #64748b !important;
+  }
+  .ML__keyboard .ML__keyboard-toolbar li.is-active {
+    color: #0f766e !important;
+  }
+}
